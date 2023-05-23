@@ -9,6 +9,7 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            docker-compose -f docker-compose-build.yaml build --parallel
+            docker logout
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker-compose -f docker-compose-build.yaml build --parallel
             docker-compose -f docker-compose-build.yaml push
